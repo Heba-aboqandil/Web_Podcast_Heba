@@ -1,0 +1,52 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Custom styles */
+body {
+  font-family: 'Merriweather', serif;
+}
+
+/* Responsive Design */
+@media (min-width: 640px) {
+  .flex-column { flex-direction: column; }
+  .text-lg { font-size: 1.125rem; }
+  .text-sm { font-size: 0.875rem; }
+  .custom-width-75 { width: 75%; }
+}
+
+@media (min-width: 768px) {
+  .sm\:w-2\/3 { width: 66.666667%; }
+  .sm\\:mx-auto { margin-left: auto; margin-right: auto; }
+}
+
+@media (min-width: 1024px) {
+  .md\:w-1\/2 { width: 50%; }
+}
+
+.bg-gray-900, .text-gray-100 {
+  background-color: #111;
+  color: #f9fafb;
+}
+
+.bg-gray-50, .text-gray-700 {
+  background-color: #f9fafb;
+  color: #374151;
+}
+
+/* Dark Mode Customization */
+.dark .bg-gray-800 {
+  background-color: #1f2937;
+}
+
+.dark .bg-gray-900 {
+  background-color: #111827;
+}
+
+.dark .text-gray-300 {
+  color: #d1d5db;
+}
+
+.dark .text-gray-100 {
+  color: #f9fafb;
+}

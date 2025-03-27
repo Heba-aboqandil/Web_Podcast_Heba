@@ -1,0 +1,269 @@
+/**
+ * index.css
+ * Global stylesheet for the SoundScribe application.
+ * Combines Tailwind utilities with custom theming system.
+ */
+
+/* Tailwind Imports */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/**
+ * Theme Variables
+ * Light theme (default) color palette
+ */
+:root {
+  --primary-bg: #ffffff;      /* Main background color */
+  --secondary-bg: #f9fafb;    /* Secondary/accent background */
+  --primary-text: #111827;    /* Main text color */
+  --secondary-text: #374151;  /* Secondary text color */
+}
+
+/**
+ * Dark Theme Colors
+ * Applied when data-theme='dark' is set
+ */
+[data-theme='dark'] {
+  --primary-bg: #1f2937;
+  --secondary-bg: #111827;
+  --primary-text: #ffffff;
+  --secondary-text: #e5e7eb;
+}
+
+/* Base Styles */
+body {
+  background-color: var(--secondary-bg);
+  color: var(--primary-text);
+  transition: all 0.3s ease;
+}
+
+/**
+ * Navigation Components
+ */
+.navbar {
+  @apply fixed top-0 w-full px-4 py-3 flex items-center justify-between z-50;
+  background-color: var(--primary-bg);
+  border-bottom: 1px solid var(--primary-text);
+}
+
+.logo {
+  @apply flex items-center gap-2 text-xl font-bold;
+  color: var(--primary-text);
+}
+
+.nav-links {
+  @apply flex items-center gap-4;
+}
+
+.theme-toggle {
+  @apply p-2 rounded-full hover:bg-gray-200 transition-colors;
+}
+
+/**
+ * Section Components
+ */
+.section-title {
+  @apply text-xl font-semibold flex items-center gap-2 mb-4;
+  color: var(--primary-text);
+}
+
+.section-card {
+  background-color: var(--primary-bg);
+  @apply rounded-xl shadow-sm p-6;
+  border: 1px solid black; 
+}
+
+.section-content {
+  @apply rounded-lg p-4;
+  background-color: var(--secondary-bg);
+  border: 1px solid black; 
+  max-height: 400px;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.5) transparent;
+}
+
+/**
+ * Custom Scrollbar Styling
+ */
+.section-content::-webkit-scrollbar {
+  width: 6px;
+}
+
+.section-content::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.section-content::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.5);
+  border-radius: 20px;
+}
+
+/* Dark mode scrollbar adjustments */
+[data-theme='dark'] .section-content::-webkit-scrollbar-thumb {
+  background-color: rgba(156, 163, 175, 0.3);
+}
+
+[data-theme='dark'] .section-card,
+[data-theme='dark'] .section-content {
+  border-color: #374151; 
+}
+
+/* Content text colors */
+.section-content p,
+.section-content div,
+.section-content span {
+  color: var(--primary-text);
+}
+
+/**
+ * Interactive Components
+ */
+.timestamp-item {
+  @apply flex items-center gap-2 p-2 rounded-lg cursor-pointer;
+  color: var(--primary-text);
+}
+
+.timestamp-item:hover {
+  background-color: var(--secondary-bg);
+  opacity: 0.8;
+}
+
+.star-rating {
+  @apply flex items-center justify-center gap-2;
+}
+
+.star-btn {
+  @apply p-1 hover:scale-110 transition-transform;
+}
+
+.search-input {
+  @apply w-full p-4 rounded-lg border focus:outline-none focus:ring-2 focus:ring-blue-500;
+  background-color: var(--secondary-bg);
+  color: var(--primary-text);
+}
+
+/**
+ * Typography Components
+ */
+.main-title {
+  @apply text-4xl md:text-6xl font-bold text-center mb-8;
+  color: var(--primary-text);
+}
+
+.main-subtitle {
+  @apply text-lg md:text-xl text-center mb-12 max-w-2xl mx-auto;
+  color: var(--secondary-text);
+}
+
+/**
+ * Grid Layout System
+ * Responsive grid for content organization
+ */
+.content-grid {
+  @apply grid grid-cols-1 gap-6 mb-12;
+  grid-template-areas: 
+    "text"
+    "summary"
+    "timestamps"
+    "search";
+}
+
+/* Responsive grid layout for medium screens and up */
+@screen md {
+  .content-grid {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-areas: 
+      "text text text"
+      "summary timestamps search";
+  }
+}
+
+/* Grid area assignments */
+.content-grid .transcribed-text { grid-area: text; }
+.content-grid .summary-section { grid-area: summary; }
+.content-grid .timestamp-section { grid-area: timestamps; }
+.content-grid .search-section { grid-area: search; }
+
+/**
+ * Button Styles
+ */
+.generate-button {
+  @apply w-full md:w-auto px-6 py-2 rounded-lg text-white font-medium bg-blue-500 
+         hover:bg-blue-600 transition-colors;
+}
+
+.generate-button:disabled {
+  @apply bg-gray-400 cursor-not-allowed;
+}
+
+/**
+ * Search Highlight Styles
+ */
+.highlight {
+  background-color: rgba(59, 130, 246, 0.2);
+  padding: 0.1em 0;
+  border-radius: 2px;
+  transition: background-color 0.3s ease;
+}
+
+[data-theme='dark'] .highlight {
+  background-color: rgba(96, 165, 250, 0.3);
+}
+
+/**
+ * Team/Crew Section Styles
+ */
+.crew-card {
+  @apply rounded-lg shadow-lg p-4 bg-white transition-transform;
+  transform: scale(1);
+}
+
+.crew-card:hover {
+  @apply bg-gray-100;
+  transform: scale(1.05);
+}
+
+.crew-card img {
+  @apply w-24 h-24 mx-auto rounded-full border-2 border-gray-300;
+}
+
+.crew-card h3 {
+  @apply text-lg font-semibold mt-4;
+  color: var(--primary-text);
+}
+
+.crew-card p {
+  @apply text-sm text-gray-600;
+  color: var(--secondary-text);
+}
+
+/**
+ * Search Results Styling
+ */
+.search-results {
+  @apply mt-4 space-y-2;
+}
+
+.search-result-item {
+  @apply flex items-start gap-2 p-2 rounded-lg;
+  background-color: var(--secondary-bg);
+}
+
+[data-theme='dark'] .search-result-item {
+  @apply bg-gray-800;
+}
+
+.search-result-count {
+  color: var(--primary-text);
+}
+
+.search-result-timestamp {
+  @apply text-sm font-medium;
+  color: var(--primary-text);
+}
+
+.search-result-text {
+  color: var(--primary-text);
+}
